@@ -12,6 +12,8 @@ async def index(request: Request):
 @app.post("/search-form")
 async def search_form(mark1: str = Form(),
                       mark2: str = Form(None),
+                      mark3: str = Form(None),
+                      mark4: str = Form(None),
                       class1: int = Form(),
                       group1: str = Form(),
                       class2: int = Form(None),
