@@ -1,8 +1,11 @@
-import selenium
+from selenium import webdriver
 
-def login_intomark( id:str, pw:str)
+def login_intomark():
 
     #로그인 파트
+
+    driver = webdriver.Chrome()
+    driver.get("https://www.intomark.com/service/mai/main.wips")
 
     input_field = driver.find_element("id", "username")
     input_field.send_keys("omipc2")
@@ -12,6 +15,10 @@ def login_intomark( id:str, pw:str)
 
     link = driver.find_element("link text", "로그인")
     link.click()
+
+    return driver
+
+def search_word(driver, mark1, class1, group1):
 
     link = driver.find_element("link text", "국가별검색")
     link.click()
