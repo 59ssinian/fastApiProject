@@ -23,14 +23,19 @@ def search_word(driver, mark1, class1, group1):
     link = driver.find_element("link text", "국가별검색")
     link.click()
 
+    #유사검색
     link = driver.find_element("xpath", "//li[2]/button")
     link.click()
 
+    #일반검색
+    link = driver.find_element("xpath", "//li/button")
+    link.click()
+
     input_field = driver.find_element("id", "tmarkNmArea")
-    input_field.send_keys("test")
+    input_field.send_keys(mark1)
 
     input_field = driver.find_element("id", "smlrCdArea")
-    input_field.send_keys("S1200")
+    input_field.send_keys(group1)
 
     link = driver.find_element("id", "dpmaxs_c")
     link.click()
