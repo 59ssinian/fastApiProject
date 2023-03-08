@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+import functions
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -20,6 +21,16 @@ async def search_form(mark1: str = Form(),
                       group2: str = Form(None),
                       class3: int = Form(None),
                       group3: str = Form(None)):
+
+    driver = functions.login_intomark()
+
+    driver = functions.search_word_identical(driver, mark1, class1, group1)
+
+    print(functions.if_noresults(driver))
+
+    driver = functions.logout_intomark(driver)
+
+
     return {"mark1": mark1, "class1": class1, "group1":group1 }
 
 
