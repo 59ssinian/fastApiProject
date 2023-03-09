@@ -112,3 +112,45 @@ def logout_intomark(driver):
 
     print("logoout")
     return driver
+
+
+def get_trademarks(driver):
+
+    trademarks = set()
+
+    status_element = driver.find_element("xpath", "//span/span/span")
+    app_number_element = driver.find_element("xpath", "//label/span/a")
+    url_element = driver.find_element("xpath", "//td/img")
+
+    if status_element:
+        status = status_element.text
+        app_number = app_number_element.text
+        url = url_element.get_attribute('src')
+
+        trademarks.add((status, app_number, url))
+    else:
+        return trademarks
+
+    for i in range(2,10):
+        status_xpath = "//li["+str(i)+"]/div/div[3]/span/span/span"
+        app_number_xpath = "//li["+str(i)+"]/div/div[3]/label/span/a"
+        url_xpath = "//li["+str(i)+"]/div/div/ul/li/table/tbody/tr/td/img"
+
+        status_element = driver.find_element("xpath", status_xpath)
+
+        if status_element:
+            app_number_element = driver.find_element("xpath", app_number_xpath)
+            url_element = driver.find_element("xpath", url_xpath)
+
+            status = status_element.text
+            app_number = app_number_element.text
+            url=url_element.get_attribute('src')
+
+            trademarks.add((status, app_number, url))
+        else:
+            break
+
+    print(trademarks)
+
+    return trademarks
+

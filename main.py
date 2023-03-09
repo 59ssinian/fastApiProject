@@ -26,9 +26,9 @@ async def search_form(mark1: str = Form(),
 
     driver = functions.search_word_similar(driver, mark1, class1, group1)
 
-    results=functions.if_noresults(driver)
+    results=functions.results_count(driver)
 
-    print(functions.results_count(driver))
+    trademarks=functions.get_trademarks(driver)
 
     driver = functions.logout_intomark(driver)
 
