@@ -24,14 +24,15 @@ async def search_form(mark1: str = Form(),
 
     driver = functions.login_intomark()
 
-    driver = functions.search_word_identical(driver, mark1, class1, group1)
+    driver = functions.search_word_similar(driver, mark1, class1, group1)
 
-    print(functions.if_noresults(driver))
+    results=functions.if_noresults(driver)
+
+    print(functions.results_count(driver))
 
     driver = functions.logout_intomark(driver)
 
-
-    return {"mark1": mark1, "class1": class1, "group1":group1 }
+    return {"mark1": mark1, "class1": class1, "group1":group1, "results":results }
 
 
 if __name__ == '__main__':
