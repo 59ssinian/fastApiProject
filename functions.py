@@ -115,6 +115,23 @@ def logout_intomark(driver):
 
 
 def get_trademarks(driver):
+    print("trademark start")
+
+
+    # 뷰가 잘못 설정된 경우
+    try:
+        driver.find_element("xpath", "//span/span/span")
+    except Exception:
+        print("view setted")
+        #view setting
+        link = driver.find_element("xpath", "//article[2]/div/ul/li[3]/a")
+        link.click()
+
+        #wating to view setting
+        wait = WebDriverWait(driver, 10)
+        xpath = "//span/span/span"
+        wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
+
 
     trademarks = set()
 
@@ -131,7 +148,7 @@ def get_trademarks(driver):
     else:
         return trademarks
 
-    for i in range(2,10):
+    for i in range(2,20):
         status_xpath = "//li["+str(i)+"]/div/div[3]/span/span/span"
         app_number_xpath = "//li["+str(i)+"]/div/div[3]/label/span/a"
         url_xpath = "//li["+str(i)+"]/div/div/ul/li/table/tbody/tr/td/img"
