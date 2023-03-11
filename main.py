@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 import functions
+import notion
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -22,6 +23,7 @@ async def search_form(mark1: str = Form(),
                       class3: int = Form(None),
                       group3: str = Form(None)):
 
+    '''
     driver = functions.login_intomark()
 
     driver = functions.search_word_similar(driver, mark1, class1, group1)
@@ -31,6 +33,9 @@ async def search_form(mark1: str = Form(),
     trademarks=functions.get_trademarks(driver)
 
     driver = functions.logout_intomark(driver)
+    '''
+
+    results=notion.notion_test()
 
     return {"mark1": mark1, "class1": class1, "group1":group1, "results":results }
 
